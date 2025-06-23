@@ -5,7 +5,9 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import LanguageSelection from './components/LanguageSelection'; // Thêm dòng này
-
+import TopicSelection from './components/TopicSelection';
+import VocabularyLearning from './components/VocabularyLearning';
+import LearningComplete from './components/LearningComplete';
 // Component bảo vệ route (cần đăng nhập)
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -91,7 +93,30 @@ function App() {
                   </ProtectedRoute>
                 } 
               />
-              
+                <Route
+                path="/topics"
+                element={
+                    <ProtectedRoute>
+                        <TopicSelection />
+                    </ProtectedRoute>
+                    }
+                />
+              <Route
+                path="/learning/:topicId"
+                element={
+                    <ProtectedRoute>
+                        <VocabularyLearning />
+                    </ProtectedRoute>
+                    }
+                />
+                <Route
+                path="/learning-complete"
+                element={
+                    <ProtectedRoute>
+                        <LearningComplete />
+                    </ProtectedRoute>
+                    }
+                />
               {/* Route không tồn tại */}
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>

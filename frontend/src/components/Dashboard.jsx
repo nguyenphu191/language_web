@@ -108,17 +108,32 @@ const Dashboard = () => {
               </h3>
               
               <div className="grid grid-cols-1 gap-3">
-                <button className="btn-primary justify-start">
-                  📚 Học từ mới
-                </button>
-                
-                <button className="btn bg-green-500 text-white hover:bg-green-600 justify-start">
-                  🔄 Ôn tập từ cũ
-                </button>
-                
-                <button className="btn bg-purple-500 text-white hover:bg-purple-600 justify-start">
-                  📝 Kiểm tra kiến thức
-                </button>
+                {user?.selectedLanguages?.length > 0 ? (
+                  <>
+                    <button 
+                      onClick={() => navigate('/topics', { 
+                        state: { languageId: user?.selectedLanguages?.[0]?.language._id } 
+                      })}
+                      className="btn-primary justify-start"
+                    >
+                      📚 Học theo chủ đề
+                    </button>
+                    
+                    <button className="btn bg-green-500 text-white hover:bg-green-600 justify-start">
+                      🔄 Ôn tập từ cũ
+                    </button>
+                    
+                    <button className="btn bg-purple-500 text-white hover:bg-purple-600 justify-start">
+                      📝 Kiểm tra kiến thức
+                    </button>
+                  </>
+                ) : (
+                  <div className="text-center py-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <p className="text-yellow-800 text-sm mb-3">
+                      Bạn chưa chọn ngôn ngữ nào để học
+                    </p>
+                  </div>
+                )}
                 
                 <button 
                     onClick={() => navigate('/language-selection')}

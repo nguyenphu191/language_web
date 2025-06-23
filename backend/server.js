@@ -28,7 +28,7 @@ app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/languages', require('./src/routes/languages'));
 app.use('/api/vocabulary', require('./src/routes/vocabulary'));
 app.use('/api/learning', require('./src/routes/learning'));
-
+app.use('/api/topics', require('./src/routes/topics'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
